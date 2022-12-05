@@ -18,14 +18,16 @@ endif()
 
 find_package(Vulkan REQUIRED)
 
-set(TAICHI_C_API_INSTALL_DIR $ENV{TAICHI_REPO_DIR}/_skbuild/win-amd64-3.8/cmake-install/c_api CACHE PATH "path to taichi c-api installation directory")
+set(TAICHI_C_API_INSTALL_DIR $ENV{TAICHI_REPO_DIR}/_skbuild/win-amd64-3.9/cmake-install/c_api CACHE PATH "path to taichi c-api installation directory")
 
 # https://discourse.cmake.org/t/cmake-does-not-find-libraries-when-compiling-for-android/5098
 if (ANDROID)
     list(APPEND CMAKE_FIND_ROOT_PATH ${TAICHI_C_API_INSTALL_DIR}/lib)
 endif()
 
+message(${TAICHI_C_API_INSTALL_DIR}/lib ------)
 find_library(taichi_c_api taichi_c_api HINTS ${TAICHI_C_API_INSTALL_DIR}/lib REQUIRED NO_CMAKE_FIND_ROOT_PATH)
+
 
 set(INC_DIRS
     ${PROJECT_SOURCE_DIR}/include
